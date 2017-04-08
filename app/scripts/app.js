@@ -64,9 +64,37 @@ Instructions:
      */
     getJSON('../data/earth-like-results.json')
     .then(function(response) {
+
+      console.log(response);
+
+      var sequence = Promise.resolve();
+
       response.results.forEach(function(url) {
-        getJSON(url).then(createPlanetThumb);
-      });
+        console.log(url);
+        console.log(getJSON(url));
+
+        sequence.then(function () {
+           return getJSON(url);
+        }).then(createPlanetThumb)        
+      })
     });
+
+
+
   });
 })(document);
+
+
+// Refrence MDN !!!  :) 
+
+// var p1 = Promise.resolve(3);
+// var p2 = 1337;
+// var p3 = new Promise((resolve, reject) => {
+//   setTimeout(resolve, 100, 'foo');
+// }); 
+
+// Promise.all([p1, p2, p3]).then(values => { 
+//   console.log(values); // [3, 1337, "foo"] 
+// });
+
+
