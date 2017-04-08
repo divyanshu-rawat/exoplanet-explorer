@@ -76,7 +76,7 @@ gulp.task('jshint', function () {
 // Optimize images
 gulp.task('images', function () {
   return gulp.src('app/images/**/*')
-    .pipe($.cache($.imagemin({
+    .pipe(($.imagemin({
       progressive: true,
       interlaced: true
     })))
